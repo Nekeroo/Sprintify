@@ -1,0 +1,12 @@
+spring.application.name=Sprintify
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/sprintify
+spring.datasource.username=sprintifyapp
+spring.datasource.password=123mtdPSSCHX@
+
+spring.flyway.enabled=true
+spring.flyway.locations=classpath:db/migration
+spring.flyway.url=${DATABASE_URL}
+spring.flyway.user=sprintifyapp
+spring.flyway.password=123mtdPSSCHX
+spring.flyway.baseline-on-migrate=true
