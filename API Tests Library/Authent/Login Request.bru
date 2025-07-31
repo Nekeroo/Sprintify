@@ -1,0 +1,26 @@
+meta {
+  name: Login Request
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/auth/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username" :"Mathieu Grattard",
+    "password" : "123mtdPSSCHX@"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

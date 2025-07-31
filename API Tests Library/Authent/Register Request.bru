@@ -1,0 +1,27 @@
+meta {
+  name: Register Request
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/auth/register
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "Mathieu Grattard",
+    "password": "123mtdPSSCHX@",
+    "email": "mathgr@gmail.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
