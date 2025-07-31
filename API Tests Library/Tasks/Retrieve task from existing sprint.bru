@@ -1,0 +1,23 @@
+meta {
+  name: Retrieve task from existing sprint
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/sprints/Sprint_1/tasks
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJNYXRoaWV1IEdyYXR0YXJkIiwiaWF0IjoxNzU0MDAwNTY0LCJleHAiOjE3NTQwMDE3NzQsInJvbGVzIjpbIlJPTEVfVVNFUiJdfQ.H1GBnASJZ7pUIVca_etbjZoJVWy9KYfWX9HVzDVbCgSJtIcyPKuG0kN9XHrweIiQotdjEHqzGB00XGUhHhvnaw
+}
+
+settings {
+  encodeUrl: true
+}

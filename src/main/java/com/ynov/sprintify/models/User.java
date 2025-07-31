@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,9 +22,12 @@ public class User {
 
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "role_id") // le nom dépend de ta colonne en BDD
+    private Role role;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Project> projects;
+
+
 }

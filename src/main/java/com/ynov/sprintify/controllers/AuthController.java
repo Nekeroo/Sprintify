@@ -1,10 +1,11 @@
 package com.ynov.sprintify.controllers;
 
 import com.ynov.sprintify.config.jwt.JwtTokenProvider;
+import com.ynov.sprintify.exceptions.users.UsernameTaken;
 import com.ynov.sprintify.models.Role;
 import com.ynov.sprintify.models.User;
+import com.ynov.sprintify.payloads.JwtResponse;
 import com.ynov.sprintify.payloads.LoginRequest;
-import com.ynov.sprintify.payloads.LoginResponse;
 import com.ynov.sprintify.payloads.RegisterRequest;
 import com.ynov.sprintify.services.RoleService;
 import com.ynov.sprintify.services.UserService;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -43,35 +44,37 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
+                        loginRequest.username(),
+                        loginRequest.password()
                 )
         );
 
-        User user = userService.getUserByUsername(loginRequest.getUsername());
-        String token = tokenProvider.generateToken(user.getUsername(),
-                user.getRoles().stream().map(Role::getName).toList());
+        User user = userService.getUserByUsername(loginRequest.username());
+        String token = tokenProvider.generateToken(user.getUsername(), List.of(user.getRole().getName()));
 
-        return ResponseEntity.ok(new LoginResponse(token));
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterRequest registerRequest) {
-        userService.getUserByUsername(registerRequest.getUsername());
-
+    public ResponseEntity<JwtResponse> registerUser(@RequestBody RegisterRequest registerRequest) {
+        if (userService.userExists(registerRequest.username())) {
+            throw new UsernameTaken();
+        }
         User user = new User();
-        user.setUsername(registerRequest.getUsername());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setEmail(registerRequest.getEmail());
+        user.setUsername(registerRequest.username());
+        user.setPassword(passwordEncoder.encode(registerRequest.password()));
+        user.setEmail(registerRequest.email());
 
         Role userRole = roleService.getRoleByName("ROLE_USER");
-        user.setRoles(Collections.singleton(userRole));
+        user.setRole(userRole);
 
         userService.saveUser(user);
 
-        return ResponseEntity.ok("User registered successfully!");
+        String token = tokenProvider.generateToken(user.getUsername(), List.of(user.getRole().getName()));
+
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 }

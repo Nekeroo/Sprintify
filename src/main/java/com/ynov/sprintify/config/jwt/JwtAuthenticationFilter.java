@@ -10,17 +10,23 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
+
+    private final CustomUserDetailsService userDetailsService;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider, CustomUserDetailsService userDetailsService) {
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -29,7 +35,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String header = request.getHeader("Authorization");
 
-        if (header != null && header.startsWith("Bearer ")) {
+
+        if (header == null || !header.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        } else {
             String token = header.substring(7);
 
             if (jwtTokenProvider.validateToken(token)) {
