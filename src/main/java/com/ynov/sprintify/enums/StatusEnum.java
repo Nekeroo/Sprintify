@@ -5,20 +5,30 @@ import lombok.Getter;
 @Getter
 public enum StatusEnum {
 
-    READY(1, "Ready"),
+    READY("Ready"),
 
-    IN_PROGRESS(2, "In Progress"),
+    IN_PROGRESS("In Progress"),
 
-    IN_TEST(3, "In Test"),
+    IN_TEST("In Test"),
 
-    DONE(4, "Done");
+    DONE("Done"),
+
+    UNKNWOW("Unknown");
 
 
-    private final int id;
     private final String label;
 
-    StatusEnum(int id, String label) {
-        this.id = id;
+    StatusEnum(String label) {
         this.label = label;
     }
+
+    public static StatusEnum fromString(String status) {
+        for (StatusEnum statusEnum : StatusEnum.values()) {
+            if (statusEnum.name().equalsIgnoreCase(status)) {
+                return statusEnum;
+            }
+        }
+        return UNKNWOW;
+    }
+
 }
