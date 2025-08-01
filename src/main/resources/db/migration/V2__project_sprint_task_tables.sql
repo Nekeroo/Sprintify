@@ -25,8 +25,9 @@ CREATE TABLE IF NOT EXISTS tasks (
     );
 
 -- Insert samper user
-INSERT INTO users (id, name, email)
-SELECT * FROM (SELECT 1, 'Demo Owner', 'demo@example.com') AS tmp
+INSERT INTO users (id, username, password, email, role_id)
+SELECT * FROM (SELECT 1, 'Demo Owner', '$2a$10$1.0vvXgq5BuZkqMpzmn.6OSBBcgWxjoEo0zrjbt3/96mu8vZWihtK
+', 'demo@example.com', 2) AS tmp
 WHERE NOT EXISTS (
     SELECT 1 FROM users WHERE id = 1
 ) LIMIT 1;
