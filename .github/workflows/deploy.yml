@@ -27,3 +27,4 @@ jobs:
           git_remote_url: 'ssh://dokku@vestiartapp.mathieugr.fr:22/sprintify'
           ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
           branch: main
+          git_push_flags: '--force'
