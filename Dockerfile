@@ -1,14 +1,16 @@
-# Use a JDK 21 base image
-FROM eclipse-temurin:21-jdk
+# --- Build Stage ---
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
 
-# Set working directory
 WORKDIR /app
-
-# Copy Maven project
 COPY . .
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-# Run the Spring Boot application
-CMD ["java", "-jar", "target/Sprintify-0.0.1-SNAPSHOT.jar"]
+# --- Runtime Stage ---
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+COPY --from=builder /app/target/Sprintify-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
