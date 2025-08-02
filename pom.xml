@@ -51,6 +51,12 @@
             <version>0.11.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+            <version>2.3.232</version>
+        </dependency>
         <!-- JJWT Runtime (Required for signing/parsing JWTs) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
