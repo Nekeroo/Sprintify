@@ -57,6 +57,13 @@
             <scope>test</scope>
             <version>2.3.232</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv -->
+        <dependency>
+            <groupId>me.paulschwarz</groupId>
+            <artifactId>spring-dotenv</artifactId>
+            <version>4.0.0</version>
+        </dependency>
         <!-- JJWT Runtime (Required for signing/parsing JWTs) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
