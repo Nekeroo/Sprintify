@@ -3,6 +3,7 @@ package com.ynov.sprintify.services;
 import com.ynov.sprintify.exceptions.sprint.SprintNotFound;
 import com.ynov.sprintify.models.Sprint;
 import com.ynov.sprintify.repositories.SprintRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,5 +17,10 @@ public class SprintService {
 
     public Sprint findSprintByName(String name) {
         return sprintRepository.findByName(name).orElseThrow(SprintNotFound::new);
+    }
+
+    @Transactional
+    public void deleteSprint(String name) {
+        sprintRepository.deleteByName(name);
     }
 }

@@ -23,7 +23,6 @@ public class Task {
 
     private String description;
 
-
     private StatusEnum status;
 
     private LocalDate dueDate;
@@ -31,7 +30,6 @@ public class Task {
     @OneToOne
     @JoinColumn(name = "assignee_id")
     private User assignee;
-
 
     @ManyToOne
     @JoinColumn(name = "sprint_id", nullable = false)

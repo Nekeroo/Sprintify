@@ -29,7 +29,6 @@ public class UserService {
     }
 
     public UserDTO getUser(String username) {
-
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFound::new);
         return UserMapper.userToUserDTO(user);
     }

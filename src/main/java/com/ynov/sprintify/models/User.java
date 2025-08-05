@@ -24,8 +24,8 @@ public class User {
 
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id") // le nom dépend de ta colonne en BDD
+    @ManyToOne()
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
