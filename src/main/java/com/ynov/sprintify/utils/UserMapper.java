@@ -3,9 +3,7 @@ package com.ynov.sprintify.utils;
 import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.models.Role;
 import com.ynov.sprintify.models.User;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UserMapper {
 
     private UserMapper() {

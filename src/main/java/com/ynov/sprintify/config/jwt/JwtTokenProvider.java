@@ -45,7 +45,7 @@ public class JwtTokenProvider {
         try {
             Jwts.parserBuilder().setSigningKey(jwtSecretKey).build().parseClaimsJws(authToken);
             return true;
-        } catch (SecurityException ex) {
+        } catch (SignatureException ex) {
             logger.error("Invalid JWT signature");
         } catch (MalformedJwtException ex) {
             logger.error("Invalid JWT token");

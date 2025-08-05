@@ -1,6 +1,8 @@
 package com.ynov.sprintify.jwt;
 
 import com.ynov.sprintify.config.jwt.JwtTokenProvider;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Base64;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,10 +65,12 @@ class JwtTokenProviderTest {
     }
 
     @Test
-    @DisplayName("validateToken returns false for token with invalid signature (SecurityException)")
-    void testValidateTokenInvalidSignature() {
-        JwtTokenProvider otherProvider = new JwtTokenProvider("NzYzMjM2NTMxNzYxNDQ1MjA2NTgxNzI1Njk0MTUzNjU1NjU5Njk2ODcyNjMzNzU1MTYxNjE3OTUzNTM3NzU3oeoeoeooeoe");
+    @DisplayName("validateToken - mauvais token : retourne false")
+    void testInvalidSignatureToken() {
+        String otherBase64Key = Base64.getEncoder()
+                .encodeToString(Keys.secretKeyFor(SignatureAlgorithm.HS512).getEncoded());        JwtTokenProvider otherProvider = new JwtTokenProvider(otherBase64Key);
         String token = otherProvider.generateToken("user", List.of("USER"));
+
         assertFalse(jwtTokenProvider.validateToken(token));
     }
 

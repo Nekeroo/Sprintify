@@ -2,9 +2,7 @@ package com.ynov.sprintify.utils;
 
 import com.ynov.sprintify.dto.SprintDTO;
 import com.ynov.sprintify.models.Sprint;
-import org.springframework.stereotype.Component;
 
-@Component
 public class SprintMapper {
 
     private SprintMapper() {

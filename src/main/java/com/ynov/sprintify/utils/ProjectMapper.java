@@ -3,11 +3,9 @@ package com.ynov.sprintify.utils;
 import com.ynov.sprintify.dto.ProjectDTO;
 import com.ynov.sprintify.dto.SprintDTO;
 import com.ynov.sprintify.models.Project;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class ProjectMapper {
 
     private ProjectMapper() {
