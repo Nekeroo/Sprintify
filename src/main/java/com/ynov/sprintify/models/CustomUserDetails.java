@@ -17,6 +17,7 @@ public record CustomUserDetails(User user) implements UserDetails {
         }
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.getName()));
     }
+
     @Override
     public String getPassword() {
         return user.getPassword();

@@ -3,6 +3,7 @@ package com.ynov.sprintify.exceptions;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.roles.RoleNotFound;
 import com.ynov.sprintify.exceptions.sprint.SprintNotFound;
+import com.ynov.sprintify.exceptions.users.Unauthorized;
 import com.ynov.sprintify.exceptions.users.UserNotFound;
 import com.ynov.sprintify.exceptions.users.UsernameTaken;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProjectNotFound.class)
     public ResponseEntity<String> handleProjectNotFound(ProjectNotFound ex) {
         return ResponseEntity.status(404).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(Unauthorized.class)
+    public ResponseEntity<String> handleUnauthorized(Unauthorized ex) {
+        return ResponseEntity.status(401).body(ex.getMessage());
     }
 
 }

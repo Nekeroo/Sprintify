@@ -1,7 +1,9 @@
 package com.ynov.sprintify.controllers;
 
 import com.ynov.sprintify.config.jwt.JwtTokenProvider;
+import com.ynov.sprintify.exceptions.users.Unauthorized;
 import com.ynov.sprintify.exceptions.users.UsernameTaken;
+import com.ynov.sprintify.models.CustomUserDetails;
 import com.ynov.sprintify.models.Role;
 import com.ynov.sprintify.models.User;
 import com.ynov.sprintify.payloads.JwtResponse;
@@ -9,14 +11,15 @@ import com.ynov.sprintify.payloads.LoginRequest;
 import com.ynov.sprintify.payloads.RegisterRequest;
 import com.ynov.sprintify.services.RoleService;
 import com.ynov.sprintify.services.UserService;
+import io.jsonwebtoken.JwtException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -76,5 +79,25 @@ public class AuthController {
         String token = tokenProvider.generateToken(user.getUsername(), List.of(user.getRole().getName()));
 
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getMe(@AuthenticationPrincipal CustomUserDetails userDetails, HttpServletRequest request) {
+        if (userDetails == null) {
+            throw new Unauthorized();
+        }
+
+        try {
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                throw new Unauthorized();
+            }
+
+            User user = userService.getUser(userDetails.getUsername());
+
+            return ResponseEntity.ok().body(user);
+        } catch (JwtException e) {
+            throw new Unauthorized();
+        }
     }
 }
