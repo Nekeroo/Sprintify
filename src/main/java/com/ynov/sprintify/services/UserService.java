@@ -1,8 +1,10 @@
 package com.ynov.sprintify.services;
 
+import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.exceptions.users.UserNotFound;
 import com.ynov.sprintify.models.User;
 import com.ynov.sprintify.repositories.UserRepository;
+import com.ynov.sprintify.utils.UserMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,8 +28,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User getUser(String username) {
-        return userRepository.findByUsername(username).orElseThrow(UserNotFound::new);
+    public UserDTO getUser(String username) {
+
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFound::new);
+        return UserMapper.userToUserDTO(user);
     }
 
 }

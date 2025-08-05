@@ -1,6 +1,7 @@
 package com.ynov.sprintify.controllers;
 
 import com.ynov.sprintify.config.jwt.JwtTokenProvider;
+import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.exceptions.users.Unauthorized;
 import com.ynov.sprintify.exceptions.users.UsernameTaken;
 import com.ynov.sprintify.models.CustomUserDetails;
@@ -82,7 +83,7 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> getMe(@AuthenticationPrincipal CustomUserDetails userDetails, HttpServletRequest request) {
+    public ResponseEntity<UserDTO> getMe(@AuthenticationPrincipal CustomUserDetails userDetails, HttpServletRequest request) {
         if (userDetails == null) {
             throw new Unauthorized();
         }
@@ -93,7 +94,7 @@ public class AuthController {
                 throw new Unauthorized();
             }
 
-            User user = userService.getUser(userDetails.getUsername());
+            UserDTO user = userService.getUser(userDetails.getUsername());
 
             return ResponseEntity.ok().body(user);
         } catch (JwtException e) {
