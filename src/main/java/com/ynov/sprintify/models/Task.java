@@ -25,6 +25,7 @@ public class Task {
 
     private StatusEnum status;
 
+    @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
     @OneToOne
