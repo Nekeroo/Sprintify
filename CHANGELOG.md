@@ -1,4 +1,27 @@
 
+<a name="v1.2.0"></a>
+## [v1.2.0](https://github.com/Nekeroo/Sprintify/compare/v1.1.0...v1.2.0)
+
+> 2025-08-06
+
+### Chore
+
+* droit ecriture changelog
+* setup semantic-release et automatisation changelog
+
+### Cor
+
+* ajout changelog
+
+### Feat
+
+* add test controller ([#3](https://github.com/Nekeroo/Sprintify/issues/3))
+
+### Fix
+
+* test changelog push
+
+
 <a name="v1.1.0"></a>
 ## [v1.1.0](https://github.com/Nekeroo/Sprintify/compare/v1.0.0...v1.1.0)
 

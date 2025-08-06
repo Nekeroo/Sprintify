@@ -1,8 +1,11 @@
 package com.ynov.sprintify.controllers;
 
+import com.ynov.sprintify.dto.SprintDTO;
 import com.ynov.sprintify.models.Sprint;
 import com.ynov.sprintify.models.Task;
+import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.services.SprintService;
+import com.ynov.sprintify.utils.SprintValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +21,18 @@ public class SprintController {
         this.sprintService = sprintService;
     }
 
-    @GetMapping("/{name}/tasks")
-    public ResponseEntity<List<Task>> getTasks(@PathVariable String name) {
-        Sprint sprint = sprintService.findSprintByName(name);
+    @PostMapping("/{name}/add")
+    public ResponseEntity<SprintDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) {
 
-        return ResponseEntity.ok(sprint.getTasks());
+        return ResponseEntity.ok(sprintService.createSprintToAProject(sprintPayload, name));
+
+    }
+
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Void> deleteSprint(@PathVariable String name) {
+        sprintService.deleteSprint(name);
+
+        return ResponseEntity.ok().build();
     }
 
 
