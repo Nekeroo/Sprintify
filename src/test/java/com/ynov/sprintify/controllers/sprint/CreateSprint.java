@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;
 
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
@@ -93,7 +95,7 @@ class CreateSprint {
 
     @DisplayName("Etant donné un payload avec un payload valide et un projet existant, alors je crée et reçois le projet")
     @Test
-    void testCreateSprintWithAValidPayload() {
+    void testCreateSprintWithAValidPayload() throws UnsupportedEncodingException {
         SprintCreationPayload sprintPayload = SprintCreationPayload.builder()
                 .name("Sprint 2")
                 .description("Description")
@@ -111,6 +113,28 @@ class CreateSprint {
        assertEquals(sprintPayload.name(), sprint.getName());
        assertEquals(sprintPayload.startDate(), sprint.getStartDate());
        assertEquals(sprintPayload.endDate(), sprint.getEndDate());
+    }
+
+    @DisplayName("Etant donné un payload avec un payload valide et un nom de projet existant encodé, alors je crée et reçois le projet")
+    @Test
+    void testCreateSprintWithAValidPayloadAndEncodedName() throws UnsupportedEncodingException {
+        SprintCreationPayload sprintPayload = SprintCreationPayload.builder()
+                .name("Sprint 2")
+                .description("Description")
+                .startDate("2023-01-01")
+                .endDate("2023-01-31")
+                .build();
+
+        ResponseEntity<?> response = sprintController.addSprintToProject("Projet%20Test", sprintPayload);
+
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+
+        SprintDTO sprint = (SprintDTO) response.getBody();
+
+        assertNotNull(sprint);
+        assertEquals(sprintPayload.name(), sprint.getName());
+        assertEquals(sprintPayload.startDate(), sprint.getStartDate());
+        assertEquals(sprintPayload.endDate(), sprint.getEndDate());
     }
 
 }
