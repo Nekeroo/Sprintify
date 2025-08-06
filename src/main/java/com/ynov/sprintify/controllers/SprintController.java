@@ -1,11 +1,8 @@
 package com.ynov.sprintify.controllers;
 
 import com.ynov.sprintify.dto.SprintDTO;
-import com.ynov.sprintify.models.Sprint;
-import com.ynov.sprintify.models.Task;
 import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.services.SprintService;
-import com.ynov.sprintify.utils.SprintValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +26,11 @@ public class SprintController {
         String decodedName = URLDecoder.decode(name, "UTF-8");
 
         return ResponseEntity.ok(sprintService.createSprintToAProject(sprintPayload, decodedName));
+    }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<List<SprintDTO>> getSprintForAProject(@PathVariable String name) {
+        return ResponseEntity.ok(sprintService.getSprintsForAProject(name));
     }
 
     @DeleteMapping("/{name}")

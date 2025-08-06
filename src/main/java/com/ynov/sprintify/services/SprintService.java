@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -59,6 +60,24 @@ public class SprintService {
         sprintRepository.save(sprint);
 
         return SprintMapper.sprintToSprintDTO(sprint);
+    }
+
+    public List<SprintDTO> getSprintsForAProject(String projectName) {
+
+        if (projectRepository.findByName(projectName).isEmpty()) {
+            throw new ProjectNotFound();
+        }
+
+        Iterable<Sprint> sprints = sprintRepository.findAll();
+        List<SprintDTO> sprintsDTO = new ArrayList<>();
+
+        for (Sprint sprint : sprints) {
+            if (sprint.getProject().getName().equals(projectName)) {
+                sprintsDTO.add(SprintMapper.sprintToSprintDTO(sprint));
+            }
+        }
+
+        return sprintsDTO;
     }
 
 }
