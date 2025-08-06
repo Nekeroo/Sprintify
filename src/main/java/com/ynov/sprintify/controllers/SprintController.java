@@ -9,6 +9,8 @@ import com.ynov.sprintify.utils.SprintValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
@@ -22,9 +24,11 @@ public class SprintController {
     }
 
     @PostMapping("/{name}/add")
-    public ResponseEntity<SprintDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) {
+    public ResponseEntity<SprintDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) throws UnsupportedEncodingException {
 
-        return ResponseEntity.ok(sprintService.createSprintToAProject(sprintPayload, name));
+        String decodedName = URLDecoder.decode(name, "UTF-8");
+
+        return ResponseEntity.ok(sprintService.createSprintToAProject(sprintPayload, decodedName));
 
     }
 

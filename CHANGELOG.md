@@ -1,4 +1,18 @@
 
+<a name="v1.3.1"></a>
+## [v1.3.1](https://github.com/Nekeroo/Sprintify/compare/v1.3.0...v1.3.1)
+
+> 2025-08-06
+
+### Chore
+
+* update changelog
+
+### Fix
+
+* gestion des noms de projets encodés
+
+
 <a name="v1.3.0"></a>
 ## [v1.3.0](https://github.com/Nekeroo/Sprintify/compare/v1.2.0...v1.3.0)
 
