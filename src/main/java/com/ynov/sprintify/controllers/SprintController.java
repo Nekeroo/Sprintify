@@ -29,7 +29,7 @@ public class SprintController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<SprintDTO>> getSprintForAProject(@PathVariable String name) {
+    public ResponseEntity<List<SprintDTO>> getSprintsForAProject(@PathVariable String name) {
         return ResponseEntity.ok(sprintService.getSprintsForAProject(name));
     }
 
