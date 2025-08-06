@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{host}}/users/search
+  url: {{host}}/users/search?q=Mat
   body: none
   auth: inherit
+}
+
+params:query {
+  q: Mat
 }
 
 settings {

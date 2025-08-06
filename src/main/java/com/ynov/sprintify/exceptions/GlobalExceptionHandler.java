@@ -27,11 +27,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(400).body(ex.getMessage());
     }
 
-    @ExceptionHandler(SprintNotFound.class)
-    public ResponseEntity<String> handleSprintNotFound(SprintNotFound ex) {
-        return ResponseEntity.status(404).body(ex.getMessage());
-    }
-
 
     @ExceptionHandler(Unauthorized.class)
     public ResponseEntity<String> handleUnauthorized(Unauthorized ex) {
