@@ -55,6 +55,7 @@ CREATE TABLE tasks
     status      INT,
     title       VARCHAR(255),
     assignee_id BIGINT,
+    story_points INT DEFAULT 0,
     CONSTRAINT UK_task_assignee UNIQUE (assignee_id),
     CONSTRAINT FK_task_assignee FOREIGN KEY (assignee_id) REFERENCES users (id),
     CONSTRAINT fk_task_sprint FOREIGN KEY (sprint_id) REFERENCES sprints (id)

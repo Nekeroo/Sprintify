@@ -26,4 +26,17 @@ public class UserMapper {
                 .roleName(role.getName())
                 .build();
     }
+
+    public static User userDTOToUser(UserDTO userDTO) {
+        if (userDTO == null) {
+            return null;
+        }
+        return User.builder()
+                .username(userDTO.getUsername())
+                .email(userDTO.getEmail())
+                .role(Role.builder()
+                        .name(userDTO.getRoleName())
+                        .build())
+                .build();
+    }
 }

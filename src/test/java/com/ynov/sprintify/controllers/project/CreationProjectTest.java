@@ -2,6 +2,7 @@ package com.ynov.sprintify.controllers.project;
 
 import com.ynov.sprintify.controllers.ProjectController;
 import com.ynov.sprintify.dto.ProjectDTO;
+import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.exceptions.project.ProjectAlreadyExists;
 import com.ynov.sprintify.exceptions.project.ProjectDescriptionTooLong;
 import com.ynov.sprintify.exceptions.project.ProjectNameTooLong;
@@ -35,7 +36,7 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("Projet Test Integration")
                 .description("Test integration")
-                .owner("demo")
+                .owner(UserDTO.builder().username("demo").build())
                 .build();
 
         ResponseEntity<?> responseEntity = controller.createProject(inputDTO);
@@ -47,7 +48,7 @@ class CreationProjectTest {
         assertNotNull(project);
         assertEquals(inputDTO.name(), project.getName());
         assertEquals(inputDTO.description(), project.getDescription());
-        assertEquals(inputDTO.owner(), project.getOwner().getUsername());
+        assertEquals(inputDTO.owner().getUsername(), project.getOwner().getUsername());
     }
 
     @DisplayName("ÉTANT DONNÉ QUE je fournis un titre valide et une description vide, alors je reçois une erreur")
@@ -57,7 +58,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("Projet Test Integration")
                 .description("")
-                .owner("demo")
+                .owner(UserDTO.builder()
+                        .username("demo")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())
                 .build();
 
         assertThrows(ProjectPayloadInvalid.class, () -> controller.createProject(inputDTO));
@@ -70,7 +74,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("Projet Test Integration")
                 .description("e".repeat(501))
-                .owner("demo")
+                .owner(UserDTO.builder()
+                        .username("demo")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())
                 .build();
 
         assertThrows(ProjectDescriptionTooLong.class, () -> controller.createProject(inputDTO));
@@ -83,7 +90,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("")
                 .description("Test integration")
-                .owner("demo")
+                .owner(UserDTO.builder()
+                        .username("demo")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())
                 .build();
 
         assertThrows(ProjectPayloadInvalid.class, () -> controller.createProject(inputDTO));
@@ -96,8 +106,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("e".repeat(51))
                 .description("Test integration")
-                .owner("demo")
-                .build();
+                .owner(UserDTO.builder()
+                        .username("demo")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())                .build();
 
         assertThrows(ProjectNameTooLong.class, () -> controller.createProject(inputDTO));
     }
@@ -109,7 +121,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("Projet Test")
                 .description("Test integration")
-                .owner("demo")
+                .owner(UserDTO.builder()
+                        .username("demo")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())
                 .build();
 
         assertThrows(ProjectAlreadyExists.class, () -> controller.createProject(inputDTO));
@@ -122,7 +137,10 @@ class CreationProjectTest {
         ProjectCreationPayload inputDTO = ProjectCreationPayload.builder()
                 .name("Projet Test Integration")
                 .description("Test integration")
-                .owner("inconnu")
+                .owner(UserDTO.builder()
+                        .username("inconnu")
+                        .email("demo@gmail.com")
+                        .roleName("ROLE_ADMIN").build())
                 .build();
 
         assertThrows(UserNotFound.class, () -> controller.createProject(inputDTO));

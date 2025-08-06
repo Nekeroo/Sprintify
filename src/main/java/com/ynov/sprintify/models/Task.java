@@ -36,4 +36,7 @@ public class Task {
     @JoinColumn(name = "sprint_id", nullable = false)
     @JsonIgnore
     private Sprint sprint;
+
+    @Column(name = "story_points", nullable = false)
+    private int storyPoints;
 }

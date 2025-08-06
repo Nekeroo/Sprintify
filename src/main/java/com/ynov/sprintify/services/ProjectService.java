@@ -60,12 +60,12 @@ public class ProjectService {
             throw new ProjectAlreadyExists();
         });
 
-        User owner = userRepository.findByUsername(projectPayload.owner()).orElseThrow(UserNotFound::new);
+        User user = userRepository.findByUsername(projectPayload.owner().getUsername()).orElseThrow(UserNotFound::new);
 
         Project project = Project.builder()
                 .name(projectPayload.name())
                 .description(projectPayload.description())
-                .owner(owner)
+                .owner(user)
                 .build();
 
         projectRepository.save(project);
