@@ -1,4 +1,22 @@
 
+<a name="v1.3.2"></a>
+## [v1.3.2](https://github.com/Nekeroo/Sprintify/compare/v1.3.1...v1.3.2)
+
+> 2025-08-06
+
+### Chore
+
+* Ajout TU
+
+### Feat
+
+* Récupération des sprints à un projet
+
+### Feat
+
+* Ajout de Sprint Controller, méthodes et tests ([#5](https://github.com/Nekeroo/Sprintify/issues/5))
+
+
 <a name="v1.3.1"></a>
 ## [v1.3.1](https://github.com/Nekeroo/Sprintify/compare/v1.3.0...v1.3.1)
 
