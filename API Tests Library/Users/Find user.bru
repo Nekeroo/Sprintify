@@ -1,0 +1,15 @@
+meta {
+  name: Find user
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/users/search
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

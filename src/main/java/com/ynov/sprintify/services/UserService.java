@@ -7,6 +7,8 @@ import com.ynov.sprintify.repositories.UserRepository;
 import com.ynov.sprintify.utils.UserMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -31,6 +33,11 @@ public class UserService {
     public UserDTO getUser(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFound::new);
         return UserMapper.userToUserDTO(user);
+    }
+
+    public List<UserDTO> getUsersFiltered(String prefix) {
+        List<User> users = userRepository.findByUsernameStartingWithIgnoreCase(prefix);
+        return users.stream().map(UserMapper::userToUserDTO).toList();
     }
 
 }

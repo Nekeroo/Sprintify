@@ -17,4 +17,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.role")
     List<User> findAllWithRole();
+
+    @Query("SELECT u FROM User u WHERE LOWER(u.username) LIKE LOWER(CONCAT(:prefix, '%'))")
+    List<User> findByUsernameStartingWithIgnoreCase(String prefix);
+
 }
