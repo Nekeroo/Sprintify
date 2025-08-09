@@ -1,4 +1,15 @@
 
+<a name="v1.4.0"></a>
+## [v1.4.0](https://github.com/Nekeroo/Sprintify/compare/v1.3.2...v1.4.0)
+
+> 2025-08-09
+
+### Chore
+
+* refactorisation des DTOs + models, mappers associés et les retours des controllers
+* update changelog v1.3.2
+
+
 <a name="v1.3.2"></a>
 ## [v1.3.2](https://github.com/Nekeroo/Sprintify/compare/v1.3.1...v1.3.2)
 
