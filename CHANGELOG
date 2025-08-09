@@ -1,0 +1,112 @@
+
+<a name="v1.4.1"></a>
+## [v1.4.1](https://github.com/Nekeroo/Sprintify/compare/v1.4.0...v1.4.1)
+
+> 2025-08-09
+
+### Chore
+
+* ajout job CI/CD
+* update changelog v1.4.0
+
+
+<a name="v1.4.0"></a>
+## [v1.4.0](https://github.com/Nekeroo/Sprintify/compare/v1.3.2...v1.4.0)
+
+> 2025-08-09
+
+### Chore
+
+* refactorisation des DTOs + models, mappers associés et les retours des controllers
+* update changelog v1.3.2
+
+
+<a name="v1.3.2"></a>
+## [v1.3.2](https://github.com/Nekeroo/Sprintify/compare/v1.3.1...v1.3.2)
+
+> 2025-08-06
+
+### Chore
+
+* Ajout TU
+
+### Feat
+
+* Récupération des sprints à un projet
+
+### Feat
+
+* Ajout de Sprint Controller, méthodes et tests ([#5](https://github.com/Nekeroo/Sprintify/issues/5))
+
+
+<a name="v1.3.1"></a>
+## [v1.3.1](https://github.com/Nekeroo/Sprintify/compare/v1.3.0...v1.3.1)
+
+> 2025-08-06
+
+### Chore
+
+* update changelog
+
+### Fix
+
+* gestion des noms de projets encodés
+
+
+<a name="v1.3.0"></a>
+## [v1.3.0](https://github.com/Nekeroo/Sprintify/compare/v1.2.0...v1.3.0)
+
+> 2025-08-06
+
+### Chore
+
+* modif changelog
+
+### Feat
+
+* Ajout méthodes dans SprintController
+
+
+<a name="v1.2.0"></a>
+## [v1.2.0](https://github.com/Nekeroo/Sprintify/compare/v1.1.0...v1.2.0)
+
+> 2025-08-06
+
+### Chore
+
+* droit ecriture changelog
+* setup semantic-release et automatisation changelog
+
+### Cor
+
+* ajout changelog
+
+### Feat
+
+* add test controller ([#3](https://github.com/Nekeroo/Sprintify/issues/3))
+
+### Fix
+
+* test changelog push
+
+
+<a name="v1.1.0"></a>
+## [v1.1.0](https://github.com/Nekeroo/Sprintify/compare/v1.0.0...v1.1.0)
+
+> 2025-08-06
+
+### Feat
+
+* Project Controller
+
+
+<a name="v1.0.0"></a>
+## v1.0.0
+
+> 2025-08-06
+
+### Pull Requests
+
+* Merge pull request [#2](https://github.com/Nekeroo/Sprintify/issues/2) from Nekeroo/FEAT-Authent
+* Merge pull request [#1](https://github.com/Nekeroo/Sprintify/issues/1) from Nekeroo/init_controllers
+
