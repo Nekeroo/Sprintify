@@ -40,6 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Coolify deploy (API)
+
         run: |
-          curl -fsSL \
-            -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }} ${{secrets.COOLIFY_DEPLOY_HOOK}}"
+            curl -fsSL \
+              -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
+                 "$COOLIFY_DEPLOY_HOOK"
+        env:
+          COOLIFY_DEPLOY_HOOK: ${{ secrets.COOLIFY_DEPLOY_HOOK }}
