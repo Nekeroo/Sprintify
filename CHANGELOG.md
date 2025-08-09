@@ -1,4 +1,15 @@
 
+<a name="v1.4.1"></a>
+## [v1.4.1](https://github.com/Nekeroo/Sprintify/compare/v1.4.0...v1.4.1)
+
+> 2025-08-09
+
+### Chore
+
+* ajout job CI/CD
+* update changelog v1.4.0
+
+
 <a name="v1.4.0"></a>
 ## [v1.4.0](https://github.com/Nekeroo/Sprintify/compare/v1.3.2...v1.4.0)
 
