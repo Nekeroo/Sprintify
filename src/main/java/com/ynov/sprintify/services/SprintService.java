@@ -1,6 +1,7 @@
 package com.ynov.sprintify.services;
 
-import com.ynov.sprintify.dto.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;
 import com.ynov.sprintify.exceptions.sprint.SprintNotFound;
@@ -41,7 +42,7 @@ public class SprintService {
         sprintRepository.deleteByName(sprint.getName());
     }
 
-    public SprintDTO createSprintToAProject(SprintCreationPayload sprintPayload, String projectName) {
+    public SprintOverviewDTO createSprintToAProject(SprintCreationPayload sprintPayload, String projectName) {
 
         SprintValidator.validateSprint(sprintPayload);
         Optional<Sprint> existingSprint = sprintRepository.findByName(sprintPayload.name());
@@ -59,21 +60,21 @@ public class SprintService {
 
         sprintRepository.save(sprint);
 
-        return SprintMapper.sprintToSprintDTO(sprint);
+        return SprintMapper.sprintToSprintOverbiewDTO(sprint);
     }
 
-    public List<SprintDTO> getSprintsForAProject(String projectName) {
+    public List<SprintOverviewDTO> getSprintsForAProject(String projectName) {
 
         if (projectRepository.findByName(projectName).isEmpty()) {
             throw new ProjectNotFound();
         }
 
         Iterable<Sprint> sprints = sprintRepository.findAll();
-        List<SprintDTO> sprintsDTO = new ArrayList<>();
+        List<SprintOverviewDTO> sprintsDTO = new ArrayList<>();
 
         for (Sprint sprint : sprints) {
             if (sprint.getProject().getName().equals(projectName)) {
-                sprintsDTO.add(SprintMapper.sprintToSprintDTO(sprint));
+                sprintsDTO.add(SprintMapper.sprintToSprintOverbiewDTO(sprint));
             }
         }
 

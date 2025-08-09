@@ -1,8 +1,8 @@
 package com.ynov.sprintify.controllers.project;
 
 import com.ynov.sprintify.controllers.ProjectController;
-import com.ynov.sprintify.dto.ProjectDTO;
 import com.ynov.sprintify.dto.UserDTO;
+import com.ynov.sprintify.dto.project.ProjectOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectAlreadyExists;
 import com.ynov.sprintify.exceptions.project.ProjectDescriptionTooLong;
 import com.ynov.sprintify.exceptions.project.ProjectNameTooLong;
@@ -43,12 +43,11 @@ class CreationProjectTest {
 
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
-        ProjectDTO project = (ProjectDTO) responseEntity.getBody();
+        ProjectOverviewDTO project = (ProjectOverviewDTO) responseEntity.getBody();
 
         assertNotNull(project);
-        assertEquals(inputDTO.name(), project.getName());
-        assertEquals(inputDTO.description(), project.getDescription());
-        assertEquals(inputDTO.owner().getUsername(), project.getOwner().getUsername());
+        assertEquals(inputDTO.name(), project.name());
+        assertEquals(inputDTO.owner().getUsername(), project.usernameOwner());
     }
 
     @DisplayName("ÉTANT DONNÉ QUE je fournis un titre valide et une description vide, alors je reçois une erreur")

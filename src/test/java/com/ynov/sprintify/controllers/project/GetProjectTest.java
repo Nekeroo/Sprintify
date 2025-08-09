@@ -1,7 +1,8 @@
 package com.ynov.sprintify.controllers.project;
 
 import com.ynov.sprintify.controllers.ProjectController;
-import com.ynov.sprintify.dto.ProjectDTO;
+import com.ynov.sprintify.dto.project.ProjectDetailsDTO;
+import com.ynov.sprintify.dto.project.ProjectOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.repositories.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -35,10 +36,10 @@ class GetProjectTest {
 
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
-        ProjectDTO project = (ProjectDTO) responseEntity.getBody();
+        ProjectDetailsDTO project = (ProjectDetailsDTO) responseEntity.getBody();
 
         assertNotNull(project);
-        assertEquals("Projet Test", project.getName());
+        assertEquals("Projet Test", project.name());
     }
 
     @DisplayName("Etant donné un nom de projet inexistant, alors j'obtiens une erreur")
@@ -55,7 +56,7 @@ class GetProjectTest {
         ResponseEntity<?> responseEntity = controller.getAllProjects();
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
-        List<ProjectDTO> projects = (List<ProjectDTO>) responseEntity.getBody();
+        List<ProjectOverviewDTO> projects = (List<ProjectOverviewDTO>) responseEntity.getBody();
 
         assertNotNull(projects);
         assertEquals(1, projects.size());
@@ -70,7 +71,7 @@ class GetProjectTest {
         ResponseEntity<?> responseEntity = controller.getAllProjects();
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
-        List<ProjectDTO> projects = (List<ProjectDTO>) responseEntity.getBody();
+        List<ProjectOverviewDTO> projects = (List<ProjectOverviewDTO>) responseEntity.getBody();
 
         assertNotNull(projects);
         assertEquals(0, projects.size());

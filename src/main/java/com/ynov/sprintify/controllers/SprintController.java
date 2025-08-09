@@ -1,6 +1,7 @@
 package com.ynov.sprintify.controllers;
 
-import com.ynov.sprintify.dto.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.services.SprintService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class SprintController {
     }
 
     @PostMapping("/{name}/add")
-    public ResponseEntity<SprintDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) throws UnsupportedEncodingException {
+    public ResponseEntity<SprintOverviewDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) throws UnsupportedEncodingException {
 
         String decodedName = URLDecoder.decode(name, "UTF-8");
 
@@ -29,7 +30,7 @@ public class SprintController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<SprintDTO>> getSprintsForAProject(@PathVariable String name) {
+    public ResponseEntity<List<SprintOverviewDTO>> getSprintsForAProject(@PathVariable String name) {
         return ResponseEntity.ok(sprintService.getSprintsForAProject(name));
     }
 

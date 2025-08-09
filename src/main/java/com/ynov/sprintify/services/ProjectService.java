@@ -1,6 +1,7 @@
 package com.ynov.sprintify.services;
 
-import com.ynov.sprintify.dto.ProjectDTO;
+import com.ynov.sprintify.dto.project.ProjectDetailsDTO;
+import com.ynov.sprintify.dto.project.ProjectOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectAlreadyExists;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.users.UserNotFound;
@@ -23,24 +24,24 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
 
-    public ProjectService(ProjectRepository projectRepository,UserRepository userRepository) {
+    public ProjectService(ProjectRepository projectRepository, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
     }
 
-    public List<ProjectDTO> getAllProjects() {
+    public List<ProjectOverviewDTO> getAllProjects() {
         Iterable<Project> projectsFound = projectRepository.findAllWithSprints();
 
         List<Project> projects = new ArrayList<>();
         projectsFound.forEach(projects::add);
 
-        return projects.stream().map(ProjectMapper::projectToProjectDTO).toList();
+        return projects.stream().map(ProjectMapper::projectToProjectOverviewDTO).toList();
     }
 
-    public ProjectDTO getProjectByNameToDTO(String name) {
+    public ProjectDetailsDTO getProjectByNameToDTO(String name) {
         Project project = projectRepository.findByName(name).orElseThrow(ProjectNotFound::new);
 
-        return ProjectMapper.projectToProjectDTO(project);
+        return ProjectMapper.projectToProjecDetailsDTO(project);
     }
 
     public Project getProjectByName(String name) {
@@ -52,7 +53,7 @@ public class ProjectService {
     }
 
     @Transactional
-    public ProjectDTO createProject(ProjectCreationPayload projectPayload) {
+    public ProjectOverviewDTO createProject(ProjectCreationPayload projectPayload) {
 
         ProjectValidator.validateProject(projectPayload);
 
@@ -70,7 +71,7 @@ public class ProjectService {
 
         projectRepository.save(project);
 
-        return ProjectMapper.projectToProjectDTO(project);
+        return ProjectMapper.projectToProjectOverviewDTO((project));
     }
 
 }

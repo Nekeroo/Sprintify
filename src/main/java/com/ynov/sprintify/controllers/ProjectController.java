@@ -1,6 +1,8 @@
 package com.ynov.sprintify.controllers;
 
-import com.ynov.sprintify.dto.ProjectDTO;
+import com.ynov.sprintify.dto.project.ProjectDTO;
+import com.ynov.sprintify.dto.project.ProjectDetailsDTO;
+import com.ynov.sprintify.dto.project.ProjectOverviewDTO;
 import com.ynov.sprintify.models.Project;
 import com.ynov.sprintify.payloads.ProjectCreationPayload;
 import com.ynov.sprintify.services.ProjectService;
@@ -20,12 +22,12 @@ public class ProjectController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ProjectDTO>> getAllProjects() {
+    public ResponseEntity<List<ProjectOverviewDTO>> getAllProjects() {
         return ResponseEntity.ok(projectService.getAllProjects());
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<ProjectDTO> getProjectByName(@PathVariable String name) {
+    public ResponseEntity<ProjectDetailsDTO> getProjectByName(@PathVariable String name) {
         return ResponseEntity.ok(projectService.getProjectByNameToDTO(name));
     }
 
@@ -39,8 +41,9 @@ public class ProjectController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectCreationPayload projectPayload) {
+    public ResponseEntity<ProjectOverviewDTO> createProject(@RequestBody ProjectCreationPayload projectPayload) {
         return ResponseEntity.ok(projectService.createProject(projectPayload));
     }
+
 
 }

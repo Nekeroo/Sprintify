@@ -1,7 +1,8 @@
 package com.ynov.sprintify.controllers.sprint;
 
 import com.ynov.sprintify.controllers.SprintController;
-import com.ynov.sprintify.dto.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintDTO;
+import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.sprint.SprintDescriptionTooLong;
 import com.ynov.sprintify.exceptions.sprint.SprintNameTooLong;
@@ -107,12 +108,12 @@ class CreateSprint {
 
        assertTrue(response.getStatusCode().is2xxSuccessful());
 
-       SprintDTO sprint = (SprintDTO) response.getBody();
+       SprintOverviewDTO sprint = (SprintOverviewDTO) response.getBody();
 
        assertNotNull(sprint);
-       assertEquals(sprintPayload.name(), sprint.getName());
-       assertEquals(sprintPayload.startDate(), sprint.getStartDate());
-       assertEquals(sprintPayload.endDate(), sprint.getEndDate());
+       assertEquals(sprintPayload.name(), sprint.name());
+       assertEquals(sprintPayload.startDate(), sprint.startDate());
+       assertEquals(sprintPayload.endDate(), sprint.endDate());
     }
 
     @DisplayName("Etant donné un payload avec un payload valide et un nom de projet existant encodé, alors je crée et reçois le projet")
@@ -129,12 +130,12 @@ class CreateSprint {
 
         assertTrue(response.getStatusCode().is2xxSuccessful());
 
-        SprintDTO sprint = (SprintDTO) response.getBody();
+        SprintOverviewDTO sprint = (SprintOverviewDTO) response.getBody();
 
         assertNotNull(sprint);
-        assertEquals(sprintPayload.name(), sprint.getName());
-        assertEquals(sprintPayload.startDate(), sprint.getStartDate());
-        assertEquals(sprintPayload.endDate(), sprint.getEndDate());
+        assertEquals(sprintPayload.name(), sprint.name());
+        assertEquals(sprintPayload.startDate(), sprint.startDate());
+        assertEquals(sprintPayload.endDate(), sprint.endDate());
     }
 
 }
