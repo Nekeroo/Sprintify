@@ -42,8 +42,8 @@ jobs:
       - name: Trigger Coolify deploy (API)
 
         run: |
-            curl -fsSL \
-              -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
-                 "$COOLIFY_DEPLOY_HOOK"
+          curl -fsSL \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
+               "COOLIFY_WEBHOOK_URL"
         env:
-          COOLIFY_DEPLOY_HOOK: ${{ secrets.COOLIFY_DEPLOY_HOOK }}
+          COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
