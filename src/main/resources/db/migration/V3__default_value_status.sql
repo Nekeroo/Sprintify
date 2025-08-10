@@ -1,0 +1,2 @@
+ALTER TABLE tasks MODIFY COLUMN status
+    VARCHAR(30) DEFAULT 'Ready';
