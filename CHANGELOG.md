@@ -1,4 +1,27 @@
 
+<a name="v1.4.2"></a>
+## [v1.4.2](https://github.com/Nekeroo/Sprintify/compare/v1.4.1...v1.4.2)
+
+> 2025-08-10
+
+### Chore
+
+* modification valeur par défaut status à task
+* update changelog [skip ci]
+* modif changelog
+
+### Fix
+
+* mauvais nom variable token
+* retrait guillemets
+* mauvais nom variable
+* jobs
+* modif curl
+* update deploy job
+* CI/CD nom repository
+* errreur changelog
+
+
 <a name="v1.4.1"></a>
 ## [v1.4.1](https://github.com/Nekeroo/Sprintify/compare/v1.4.0...v1.4.1)
 
