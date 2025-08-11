@@ -3,8 +3,7 @@ package com.ynov.sprintify.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ynov.sprintify.enums.StatusEnum;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +11,9 @@ import java.time.LocalDate;
 @Setter
 @Table(name = "tasks")
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -23,6 +25,8 @@ public class Task {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private StatusEnum status;
 
     @Column(name = "due_date", nullable = false)
