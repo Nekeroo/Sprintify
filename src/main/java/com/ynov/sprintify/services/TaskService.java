@@ -2,6 +2,7 @@ package com.ynov.sprintify.services;
 
 import com.ynov.sprintify.dto.task.TaskDetailDTO;
 import com.ynov.sprintify.enums.StatusEnum;
+import com.ynov.sprintify.exceptions.task.TaskNotFound;
 import com.ynov.sprintify.models.Sprint;
 import com.ynov.sprintify.models.Task;
 import com.ynov.sprintify.models.User;
@@ -58,5 +59,22 @@ public class TaskService {
         return TaskMapper.taskToTaskDTO(task);
     }
 
+    public TaskDetailDTO updateTask(String taskName, TaskDetailDTO taskDetailDTO) {
+        TaskValidator.validateTaskUpdate(taskDetailDTO);
+
+        Task task = taskRepository.findTaskByTitle(taskName).orElseThrow(TaskNotFound::new);
+        User user = userService.getUserByUsername(taskDetailDTO.usernameAssignee());
+
+        task.setTitle(taskDetailDTO.title());
+        task.setDescription(taskDetailDTO.description());
+        task.setStatus(StatusEnum.fromString(taskDetailDTO.status()));
+        task.setDueDate(LocalDate.parse(taskDetailDTO.dueDate()));
+        task.setAssignee(user);
+        task.setStoryPoints(taskDetailDTO.storyPoints());
+
+        taskRepository.save(task);
+
+        return TaskMapper.taskToTaskDTO(task);
+    }
 
 }

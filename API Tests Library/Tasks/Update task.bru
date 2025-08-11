@@ -1,0 +1,26 @@
+meta {
+  name: Update task
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{host}}/tasks/update/Tache d'exemple
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "title": "Tâche d'exemple",
+      "description": "Une tâche de démonstration",
+      "status": "Ready",
+      "dueDate": "2025-08-17",
+      "usernameAssignee": "Demo Owner",
+      "storyPoints": 4
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -29,4 +29,9 @@ public class TaskController {
         return ResponseEntity.ok(taskService.createTask(name, taskDetailDTO));
     }
 
+    @PutMapping("/update/{name}")
+    public ResponseEntity<TaskDetailDTO> updateTask(@PathVariable String name,@RequestBody TaskDetailDTO taskCreationPayload) {
+        return ResponseEntity.ok(taskService.updateTask(name, taskCreationPayload));
+    }
+
 }
