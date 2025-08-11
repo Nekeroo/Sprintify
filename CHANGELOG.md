@@ -1,4 +1,26 @@
 
+<a name="v1.5.0"></a>
+## [v1.5.0](https://github.com/Nekeroo/Sprintify/compare/v1.4.2...v1.5.0)
+
+> 2025-08-11
+
+### Chore
+
+* update changelog
+
+### Feat
+
+* Task controller, méthods, exceptions, etc. TODO : Ajouter tests
+
+### Fix
+
+* Ajout TU + modif schema et data dans les tests
+
+### Pull Requests
+
+* Merge pull request [#7](https://github.com/Nekeroo/Sprintify/issues/7) from Nekeroo/feat-task
+
+
 <a name="v1.4.2"></a>
 ## [v1.4.2](https://github.com/Nekeroo/Sprintify/compare/v1.4.1...v1.4.2)
 
