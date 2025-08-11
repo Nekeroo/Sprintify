@@ -1,4 +1,26 @@
 
+<a name="v1.6.0"></a>
+## [v1.6.0](https://github.com/Nekeroo/Sprintify/compare/v1.5.0...v1.6.0)
+
+> 2025-08-11
+
+### Chore
+
+* ajout tests pour coverage sonar
+* update changelog
+
+### Fix
+
+* modif lien fichier jacoco
+* modif plugin jacoco et sonar action
+* modif job build test and analyse
+* build sonar
+
+### Pull Requests
+
+* Merge pull request [#8](https://github.com/Nekeroo/Sprintify/issues/8) from Nekeroo/fix-sonar
+
+
 <a name="v1.5.0"></a>
 ## [v1.5.0](https://github.com/Nekeroo/Sprintify/compare/v1.4.2...v1.5.0)
 
