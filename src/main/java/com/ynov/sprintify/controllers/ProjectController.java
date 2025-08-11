@@ -1,6 +1,5 @@
 package com.ynov.sprintify.controllers;
 
-import com.ynov.sprintify.dto.project.ProjectDTO;
 import com.ynov.sprintify.dto.project.ProjectDetailsDTO;
 import com.ynov.sprintify.dto.project.ProjectOverviewDTO;
 import com.ynov.sprintify.models.Project;

@@ -1,25 +1,29 @@
 package com.ynov.sprintify.controllers.sprint;
 
 import com.ynov.sprintify.controllers.SprintController;
-import com.ynov.sprintify.dto.sprint.SprintDTO;
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
+import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.repositories.SprintRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mockStatic;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class GetSprint {
+class GetSprintTest {
 
     @Autowired
     private SprintController sprintController;
@@ -54,7 +58,7 @@ class GetSprint {
 
         assertNotNull(responseEntity.getBody());
 
-        List<SprintDTO> sprints = (List<SprintDTO>) responseEntity.getBody();
+        List<SprintOverviewDTO> sprints = (List<SprintOverviewDTO>) responseEntity.getBody();
         assertTrue(sprints.isEmpty());
     }
 
@@ -62,6 +66,25 @@ class GetSprint {
     @Test
     void testGetSprintWithAInvalidProjectName() {
         assertThrows(ProjectNotFound.class, () -> sprintController.getSprintsForAProject("unknown"));
+    }
+
+    @Test
+    void testAddSprintToProject_throwsUnsupportedEncodingException() {
+        try (MockedStatic<URLDecoder> urlDecoderMock = mockStatic(URLDecoder.class)) {
+            urlDecoderMock.when(() -> URLDecoder.decode("bad", "UTF-8"))
+                    .thenThrow(new UnsupportedEncodingException());
+
+            SprintCreationPayload sprintPayload = SprintCreationPayload.builder()
+                    .name("Sprint X")
+                    .description("desc")
+                    .startDate("2023-01-01")
+                    .endDate("2023-01-31")
+                    .build();
+
+            assertThrows(UnsupportedEncodingException.class, () ->
+                    sprintController.addSprintToProject("bad", sprintPayload)
+            );
+        }
     }
 
 }

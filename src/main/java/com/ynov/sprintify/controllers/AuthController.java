@@ -3,7 +3,7 @@ package com.ynov.sprintify.controllers;
 import com.ynov.sprintify.config.jwt.JwtTokenProvider;
 import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.exceptions.users.Unauthorized;
-import com.ynov.sprintify.exceptions.users.UsernameTaken;
+import com.ynov.sprintify.exceptions.users.UserUsernameTaken;
 import com.ynov.sprintify.models.CustomUserDetails;
 import com.ynov.sprintify.models.Role;
 import com.ynov.sprintify.models.User;
@@ -12,9 +12,9 @@ import com.ynov.sprintify.payloads.LoginRequest;
 import com.ynov.sprintify.payloads.RegisterRequest;
 import com.ynov.sprintify.services.RoleService;
 import com.ynov.sprintify.services.UserService;
+import com.ynov.sprintify.utils.UserValidator;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -64,8 +64,11 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<JwtResponse> registerUser(@RequestBody RegisterRequest registerRequest) {
+
+        UserValidator.validateUser(registerRequest);
+
         if (userService.userExists(registerRequest.username())) {
-            throw new UsernameTaken();
+            throw new UserUsernameTaken();
         }
         User user = new User();
         user.setUsername(registerRequest.username());
