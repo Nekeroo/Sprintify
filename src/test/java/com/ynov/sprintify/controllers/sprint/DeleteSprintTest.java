@@ -16,10 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Transactional
 @SpringBootTest
 @ActiveProfiles("test")
-class DeleteSprint {
+class DeleteSprintTest {
 
     @Autowired
     private SprintController sprintController;
+
 
     @DisplayName("Lorsque je veux supprimer un sprint avec un nom inexistant, je dois obtenir une erreur")
     @Test
@@ -33,5 +34,6 @@ class DeleteSprint {
         ResponseEntity<?> responseEntity = sprintController.deleteSprint("Sprint 1");
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
     }
+
 
 }

@@ -1,6 +1,5 @@
 package com.ynov.sprintify.dto.project;
 
-import com.ynov.sprintify.dto.sprint.SprintDTO;
 import com.ynov.sprintify.dto.UserDTO;
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import lombok.Builder;

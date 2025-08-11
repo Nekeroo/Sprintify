@@ -1,6 +1,5 @@
 package com.ynov.sprintify.services;
 
-import com.ynov.sprintify.dto.sprint.SprintDTO;
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;

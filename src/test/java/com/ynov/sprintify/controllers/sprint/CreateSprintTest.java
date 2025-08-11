@@ -1,9 +1,9 @@
 package com.ynov.sprintify.controllers.sprint;
 
 import com.ynov.sprintify.controllers.SprintController;
-import com.ynov.sprintify.dto.sprint.SprintDTO;
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
+import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;
 import com.ynov.sprintify.exceptions.sprint.SprintDescriptionTooLong;
 import com.ynov.sprintify.exceptions.sprint.SprintNameTooLong;
 import com.ynov.sprintify.exceptions.sprint.SprintPayloadInvalid;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;
 
 import java.io.UnsupportedEncodingException;
 
@@ -24,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 @SpringBootTest
 @ActiveProfiles("test")
-class CreateSprint {
+class CreateSprintTest {
 
     @Autowired
     private SprintController sprintController;

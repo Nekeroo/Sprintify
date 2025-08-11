@@ -1,7 +1,7 @@
 package com.ynov.sprintify.exceptions.users;
 
-public class UsernameTaken extends RuntimeException {
-    public UsernameTaken() {
+public class UserUsernameTaken extends RuntimeException {
+    public UserUsernameTaken() {
         super("Username already taken");
     }
 }

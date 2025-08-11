@@ -5,7 +5,7 @@ values (98, 'ROLE_USER'),
 
 -- Insert mock user
 INSERT INTO users (id, username, password, email, role_id)
-values (99, 'demo', '$2a$10$.vC4G0pAwbngnAn3zVS2N.E8jtEnvQ6QgUd/vF5E0Qc7FNmjxWp76', 'demo@gmail.com', 99);
+values (99, 'demo', '$2a$10$xUsDIsHlpDL6ArRb0qgdM.kH/Na2JZgxYBL2sATnf7VKYSUafO99e', 'demo@gmail.com', 99);
 
 
 INSERT INTO projects (id, name, description, owner_id)

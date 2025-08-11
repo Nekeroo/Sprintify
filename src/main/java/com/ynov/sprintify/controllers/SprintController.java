@@ -1,6 +1,5 @@
 package com.ynov.sprintify.controllers;
 
-import com.ynov.sprintify.dto.sprint.SprintDTO;
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
 import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.services.SprintService;
