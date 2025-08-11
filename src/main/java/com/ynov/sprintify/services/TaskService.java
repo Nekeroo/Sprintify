@@ -8,6 +8,7 @@ import com.ynov.sprintify.models.User;
 import com.ynov.sprintify.payloads.TaskCreationPayload;
 import com.ynov.sprintify.repositories.TaskRepository;
 import com.ynov.sprintify.utils.TaskMapper;
+import com.ynov.sprintify.utils.TaskValidator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,6 +37,8 @@ public class TaskService {
     }
 
     public TaskDetailDTO createTask(String name, TaskCreationPayload taskCreationPayload) {
+
+        TaskValidator.validateTask(taskCreationPayload);
         Sprint sprint = sprintService.findSprintByName(name);
 
         User user = userService.getUserByUsername(taskCreationPayload.assignee());

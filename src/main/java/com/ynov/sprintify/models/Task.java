@@ -32,7 +32,7 @@ public class Task {
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "assignee_id")
     private User assignee;
 
