@@ -24,9 +24,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build and test with coverage
-        run: mvn clean verify
-
       - name: Build, test and analyze with Sonar (Maven)
         run: |
           mvn -B -Dspring.profiles.active=test \
