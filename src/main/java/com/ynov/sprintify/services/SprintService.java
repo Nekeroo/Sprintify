@@ -65,20 +65,12 @@ public class SprintService {
 
     public List<SprintOverviewDTO> getSprintsForAProject(String projectName) {
 
-        if (projectRepository.findByName(projectName).isEmpty()) {
-            throw new ProjectNotFound();
-        }
+        Project project = projectRepository.findByName(projectName).orElseThrow(ProjectNotFound::new);
 
-        Iterable<Sprint> sprints = sprintRepository.findAll();
-        List<SprintOverviewDTO> sprintsDTO = new ArrayList<>();
-
-        for (Sprint sprint : sprints) {
-            if (sprint.getProject().getName().equals(projectName)) {
-                sprintsDTO.add(SprintMapper.sprintToSprintOverbiewDTO(sprint));
-            }
-        }
-
-        return sprintsDTO;
+        return sprintRepository.findALlByProjectId(project.getId())
+                .stream()
+                .map(SprintMapper::sprintToSprintOverbiewDTO)
+                .toList();
     }
 
 }

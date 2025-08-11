@@ -9,4 +9,5 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     List<Task> findAllBySprintId(Long sprintId);
 
+
 }
