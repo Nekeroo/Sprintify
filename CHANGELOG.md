@@ -1,4 +1,23 @@
 
+<a name="v1.7.0"></a>
+## [v1.7.0](https://github.com/Nekeroo/Sprintify/compare/v1.6.0...v1.7.0)
+
+> 2025-08-13
+
+### Chore
+
+* correctif sonarcloud file
+* Ajout documentation Swagger
+* update SQL file
+* ajout message pour Sonar
+* retrait unique key
+* update changelog
+
+### Feat
+
+* ajout update route
+
+
 <a name="v1.6.0"></a>
 ## [v1.6.0](https://github.com/Nekeroo/Sprintify/compare/v1.5.0...v1.6.0)
 
