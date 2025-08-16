@@ -1,4 +1,18 @@
 
+<a name="v1.9.0"></a>
+## [v1.9.0](https://github.com/Nekeroo/Sprintify/compare/1.9.0...v1.9.0)
+
+> 2025-08-16
+
+### Chore
+
+* update changelog.md
+
+### Feat
+
+* Ajout stats d'un sprint
+
+
 <a name="1.9.0"></a>
 ## [1.9.0](https://github.com/Nekeroo/Sprintify/compare/v1.8.1...1.9.0)
 
