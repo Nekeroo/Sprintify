@@ -1,4 +1,14 @@
 
+<a name="1.9.0"></a>
+## [1.9.0](https://github.com/Nekeroo/Sprintify/compare/v1.8.1...1.9.0)
+
+> 2025-08-16
+
+### Chore
+
+* rename route
+
+
 <a name="v1.8.1"></a>
 ## [v1.8.1](https://github.com/Nekeroo/Sprintify/compare/v1.8.0...v1.8.1)
 
