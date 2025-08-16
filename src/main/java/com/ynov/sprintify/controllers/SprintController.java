@@ -1,12 +1,12 @@
 package com.ynov.sprintify.controllers;
 
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
+import com.ynov.sprintify.dto.sprint.StatDTO;
 import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.services.SprintService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -47,6 +47,12 @@ public class SprintController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{name}/stats")
+    public ResponseEntity<StatDTO> getSprintStats(@PathVariable String name) {
 
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        return ResponseEntity.ok(sprintService.getSprintStats(decodedName));
+    }
 
 }

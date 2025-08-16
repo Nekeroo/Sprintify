@@ -1,0 +1,15 @@
+meta {
+  name: Sprint Stat
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/sprints/Sprint%201/stats
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

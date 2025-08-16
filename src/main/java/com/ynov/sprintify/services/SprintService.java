@@ -1,11 +1,14 @@
 package com.ynov.sprintify.services;
 
 import com.ynov.sprintify.dto.sprint.SprintOverviewDTO;
+import com.ynov.sprintify.dto.sprint.StatDTO;
+import com.ynov.sprintify.enums.StatusEnum;
 import com.ynov.sprintify.exceptions.project.ProjectNotFound;
 import com.ynov.sprintify.exceptions.sprint.SprintAlreadyExists;
 import com.ynov.sprintify.exceptions.sprint.SprintNotFound;
 import com.ynov.sprintify.models.Project;
 import com.ynov.sprintify.models.Sprint;
+import com.ynov.sprintify.models.Task;
 import com.ynov.sprintify.payloads.SprintCreationPayload;
 import com.ynov.sprintify.repositories.ProjectRepository;
 import com.ynov.sprintify.repositories.SprintRepository;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,6 +45,7 @@ public class SprintService {
         sprintRepository.deleteByName(sprint.getName());
     }
 
+    @Transactional
     public SprintOverviewDTO createSprintToAProject(SprintCreationPayload sprintPayload, String projectName) {
 
         SprintValidator.validateSprint(sprintPayload);
@@ -71,5 +76,29 @@ public class SprintService {
                 .map(SprintMapper::sprintToSprintOverbiewDTO)
                 .toList();
     }
+
+    @Transactional
+    public StatDTO getSprintStats(String name) {
+        Sprint sprint = this.findSprintByName(name);
+
+        int capacity = sprint.getTasks().stream()
+                .mapToInt(Task::getStoryPoints)
+                .sum();
+
+        long done = sprint.getTasks().stream()
+                .filter(t -> Objects.equals(t.getStatus().getLabel(), StatusEnum.DONE.getLabel()))
+                .count();
+
+        long notDone = sprint.getTasks().size() - done;
+
+        return StatDTO.builder()
+                .name(sprint.getName())
+                .nbTask(sprint.getTasks().size())
+                .nbTaskDone(done)
+                .nbTaskNotDone(notDone)
+                .capacity(capacity)
+                .build();
+    }
+
 
 }
