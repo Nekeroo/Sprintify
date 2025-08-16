@@ -77,4 +77,9 @@ public class TaskService {
         return TaskMapper.taskToTaskDTO(task);
     }
 
+    public void deleteTask(String taskName) {
+        Task task = taskRepository.findTaskByTitle(taskName).orElseThrow(TaskNotFound::new);
+        taskRepository.delete(task);
+    }
+
 }
