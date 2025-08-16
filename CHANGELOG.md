@@ -1,4 +1,15 @@
 
+<a name="v1.8.1"></a>
+## [v1.8.1](https://github.com/Nekeroo/Sprintify/compare/v1.8.0...v1.8.1)
+
+> 2025-08-16
+
+### Chore
+
+* Ajout décodage nom si nécessaire
+* update changelog
+
+
 <a name="v1.8.0"></a>
 ## [v1.8.0](https://github.com/Nekeroo/Sprintify/compare/v1.7.1...v1.8.0)
 
