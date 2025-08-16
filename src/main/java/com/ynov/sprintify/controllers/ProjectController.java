@@ -8,6 +8,8 @@ import com.ynov.sprintify.services.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -27,13 +29,17 @@ public class ProjectController {
 
     @GetMapping("/{name}")
     public ResponseEntity<ProjectDetailsDTO> getProjectByName(@PathVariable String name) {
-        return ResponseEntity.ok(projectService.getProjectByNameToDTO(name));
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+
+        return ResponseEntity.ok(projectService.getProjectByNameToDTO(decodedName));
     }
 
     @DeleteMapping("/{name}")
     public ResponseEntity<Void> deleteProject(@PathVariable String name) {
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
 
-        Project project = projectService.getProjectByName(name);
+        Project project = projectService.getProjectByName(decodedName);
 
         projectService.deleteProject(project);
         return ResponseEntity.ok().build();

@@ -6,6 +6,8 @@ import com.ynov.sprintify.services.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -20,23 +22,33 @@ public class TaskController {
 
     @GetMapping("/{name}")
     public ResponseEntity<List<TaskDetailDTO>> getTaskBySprintName(@PathVariable String name) {
-        return ResponseEntity.ok(taskService.getAllTaskBySprint(name));
+
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        return ResponseEntity.ok(taskService.getAllTaskBySprint(decodedName));
     }
 
     @PostMapping("/{name}")
     public ResponseEntity<TaskDetailDTO> createTask(@PathVariable String name, @RequestBody TaskCreationPayload taskDetailDTO) {
 
-        return ResponseEntity.ok(taskService.createTask(name, taskDetailDTO));
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        return ResponseEntity.ok(taskService.createTask(decodedName, taskDetailDTO));
     }
 
     @PutMapping("/update/{name}")
     public ResponseEntity<TaskDetailDTO> updateTask(@PathVariable String name,@RequestBody TaskDetailDTO taskCreationPayload) {
-        return ResponseEntity.ok(taskService.updateTask(name, taskCreationPayload));
+
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        return ResponseEntity.ok(taskService.updateTask(decodedName, taskCreationPayload));
     }
 
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteTask(@PathVariable String name) {
-        taskService.deleteTask(name);
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        taskService.deleteTask(decodedName);
         return ResponseEntity.ok().build();
     }
 

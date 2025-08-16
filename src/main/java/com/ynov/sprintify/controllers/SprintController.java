@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -21,21 +22,27 @@ public class SprintController {
     }
 
     @PostMapping("/{name}/add")
-    public ResponseEntity<SprintOverviewDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) throws UnsupportedEncodingException {
+    public ResponseEntity<SprintOverviewDTO> addSprintToProject(@PathVariable String name, @RequestBody SprintCreationPayload sprintPayload) {
 
-        String decodedName = URLDecoder.decode(name, "UTF-8");
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
 
         return ResponseEntity.ok(sprintService.createSprintToAProject(sprintPayload, decodedName));
     }
 
     @GetMapping("/{name}")
     public ResponseEntity<List<SprintOverviewDTO>> getSprintsForAProject(@PathVariable String name) {
-        return ResponseEntity.ok(sprintService.getSprintsForAProject(name));
+
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+
+        return ResponseEntity.ok(sprintService.getSprintsForAProject(decodedName));
     }
 
     @DeleteMapping("/{name}")
     public ResponseEntity<Void> deleteSprint(@PathVariable String name) {
-        sprintService.deleteSprint(name);
+        String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
+
+        sprintService.deleteSprint(decodedName);
 
         return ResponseEntity.ok().build();
     }

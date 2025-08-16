@@ -16,6 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,23 +69,4 @@ class GetSprintTest {
         assertThrows(ProjectNotFound.class, () -> sprintController.getSprintsForAProject("unknown"));
     }
 
-    @Test
-    void testAddSprintToProject_throwsUnsupportedEncodingException() {
-        try (MockedStatic<URLDecoder> urlDecoderMock = mockStatic(URLDecoder.class)) {
-            urlDecoderMock.when(() -> URLDecoder.decode("bad", "UTF-8"))
-                    .thenThrow(new UnsupportedEncodingException());
-
-            SprintCreationPayload sprintPayload = SprintCreationPayload.builder()
-                    .name("Sprint X")
-                    .description("desc")
-                    .startDate("2023-01-01")
-                    .endDate("2023-01-31")
-                    .build();
-
-            assertThrows(UnsupportedEncodingException.class, () ->
-                    sprintController.addSprintToProject("bad", sprintPayload)
-            );
-        }
     }
-
-}
