@@ -38,7 +38,7 @@ public class SprintController {
         return ResponseEntity.ok(sprintService.getSprintsForAProject(decodedName));
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteSprint(@PathVariable String name) {
         String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
 

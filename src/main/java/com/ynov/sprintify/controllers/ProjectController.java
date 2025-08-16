@@ -35,7 +35,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getProjectByNameToDTO(decodedName));
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<Void> deleteProject(@PathVariable String name) {
         String decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8);
 
