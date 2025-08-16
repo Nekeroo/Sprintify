@@ -1,4 +1,20 @@
 
+<a name="v1.8.0"></a>
+## [v1.8.0](https://github.com/Nekeroo/Sprintify/compare/v1.7.1...v1.8.0)
+
+> 2025-08-16
+
+### Chore
+
+* dépendance sonar avant deploy
+* fix syntaxe sonarcloud.yml
+* update changelog
+
+### Feat
+
+* Suppression task
+
+
 <a name="v1.7.1"></a>
 ## [v1.7.1](https://github.com/Nekeroo/Sprintify/compare/v1.7.0...v1.7.1)
 
