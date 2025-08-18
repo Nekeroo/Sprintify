@@ -95,7 +95,7 @@ Afin de lancer l'application, vous devez simplement taper la commande suivante :
 
 ## Documentation
 
-Vous pouvez consulter la documentation de l'API (Routes, Objets, etc.) en vous rendant sur la page suivante : http://sprintify.mathieugr.fr:3000/swagger-ui/index.html
+Vous pouvez consulter la documentation de l'API (Routes, Objets, etc.) en vous rendant sur la page suivante : https://sprintify.mathieugr.fr/swagger-ui/index.html
 
 ## Tests
 
