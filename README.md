@@ -3,6 +3,10 @@
 Sprintify - Backend est l'API appelée par l'application mobile et / ou web. 
 Celle-ci permet de créer, modifier et supprimer les objets nécessaires.
 
+Cette API est utilisée sur l'application frontend : 
+
+https://github.com/Nekeroo/SprintifyAppMobile
+
 ## Dernière version stable (LTS)
 
 Version actuelle : v1.9.0
