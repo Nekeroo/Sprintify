@@ -1,4 +1,15 @@
 
+<a name="v1.11.0"></a>
+## [v1.11.0](https://github.com/Nekeroo/Sprintify/compare/1.10.0...v1.11.0)
+
+> 2025-08-19
+
+### Chore
+
+* ajout dockercompose + modification securityConfig
+* update changelog
+
+
 <a name="1.10.0"></a>
 ## [1.10.0](https://github.com/Nekeroo/Sprintify/compare/v1.9.0...1.10.0)
 
