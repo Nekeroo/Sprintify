@@ -21,6 +21,24 @@ body:json {
   }
 }
 
+script:post-response {
+  let data = res?.body;
+  
+  if (typeof data === "string") {
+    try { data = JSON.parse(data); }
+    catch (e) {
+      console.log("❌ Body non-JSON, parse impossible :", e);
+    }
+  }
+  
+  if (data?.token) {
+    bru.setVar("token", data.token);
+    console.log("✅ Token sauvegardé :", data.token);
+  } else {
+    console.log("❌ Aucun token trouvé. Statut:", res?.status, "Body:", res?.body);
+  }
+}
+
 settings {
   encodeUrl: true
 }

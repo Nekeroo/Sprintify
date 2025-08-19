@@ -7,11 +7,15 @@ meta {
 get {
   url: {{host}}/users/search?q=Mat
   body: none
-  auth: inherit
+  auth: bearer
 }
 
 params:query {
   q: Mat
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 settings {
