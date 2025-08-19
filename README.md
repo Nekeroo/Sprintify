@@ -35,11 +35,47 @@ https://github.com/Nekeroo/Sprintify/tree/v1.9.0
 
 ## Installation
 
+
 ### Cloner le projet 
 
 ```bash
 git clone https://github.com/Nekeroo/Sprintify.git
 ```
+
+### Installation des dépendances
+
+```bash
+cd Sprintify
+mvn clean install -DskipTests
+```
+
+## Utilisation de Docker 
+
+### Docker Compose
+
+Pour faciliter le lancement de l'application sans forcément créer de base de données locale, vous pouvez utiliser Docker Compose.
+
+### Packager l'application
+
+Pour se faire, vous aurez besoin de maven et d'exécuter la commande suivante :
+
+```bash
+mvn clean package -DskipTests
+```
+
+Une fois celle-ci terminé, vous pouvez lancer l'application avec la commande suivante :
+
+```bash
+docker-compose up --build
+```
+
+*Assurez-vous d'avoir docker de lancer sur votre machine. Pour se faire, vous pouvez exécutez ceci : 
+
+```bash
+docker info
+```
+
+## Utilisation manuelle
 
 ### Créer votre base de données locale 
 
@@ -89,6 +125,7 @@ JWT_SECRET_KEY=clé_secrète
 
 Le fichier application.properties fait appel à ces variables afin de se connecter à la base de données ainsi que la clé secrète pour le JWT.
 
+
 ### Lancer l'application
 
 Afin de lancer l'application, vous devez simplement taper la commande suivante :
@@ -96,6 +133,7 @@ Afin de lancer l'application, vous devez simplement taper la commande suivante :
 ```bash
 ./mvnw spring-boot:run
 ```
+
 
 ## Documentation
 
