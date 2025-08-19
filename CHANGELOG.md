@@ -1,4 +1,23 @@
 
+<a name="1.10.0"></a>
+## [1.10.0](https://github.com/Nekeroo/Sprintify/compare/v1.9.0...1.10.0)
+
+> 2025-08-19
+
+### Chore
+
+* ajout authenticated + update script bru
+* update README.md
+* ajout ssl
+* update README.md
+* ajout readme
+* update changelog
+
+### Pull Requests
+
+* Merge pull request [#9](https://github.com/Nekeroo/Sprintify/issues/9) from Nekeroo/chore-readme
+
+
 <a name="v1.9.0"></a>
 ## [v1.9.0](https://github.com/Nekeroo/Sprintify/compare/1.9.0...v1.9.0)
 
