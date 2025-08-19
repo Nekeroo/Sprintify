@@ -1,4 +1,15 @@
 
+<a name="v1.11.1"></a>
+## [v1.11.1](https://github.com/Nekeroo/Sprintify/compare/v1.11.0...v1.11.1)
+
+> 2025-08-19
+
+### Chore
+
+* correction config security
+* update changelod
+
+
 <a name="v1.11.0"></a>
 ## [v1.11.0](https://github.com/Nekeroo/Sprintify/compare/1.10.0...v1.11.0)
 
