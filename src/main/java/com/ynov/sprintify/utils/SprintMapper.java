@@ -14,6 +14,7 @@ public class SprintMapper {
                 .name(sprint.getName())
                 .startDate(sprint.getStartDate().toString())
                 .endDate(sprint.getEndDate().toString())
+                .description(sprint.getDescription())
                 .build();
     }
 
