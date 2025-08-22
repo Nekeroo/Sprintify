@@ -45,7 +45,7 @@ git clone https://github.com/Nekeroo/Sprintify.git
 
 ```bash
 cd Sprintify
-mvn clean install -DskipTests
+./mvnw clean install -DskipTests
 ```
 
 ## Utilisation de Docker 
@@ -59,7 +59,7 @@ Pour faciliter le lancement de l'application sans forcément créer de base de d
 Pour se faire, vous aurez besoin de maven et d'exécuter la commande suivante :
 
 ```bash
-mvn clean package -DskipTests
+./mvnw clean package -DskipTests
 ```
 
 Une fois celle-ci terminé, vous pouvez lancer l'application avec la commande suivante :
@@ -147,4 +147,4 @@ Ceci permet de vérifier l'intégrité des données et des routes.
 ## Déploiement
 
 L'application est déployée sur Coolify, solution de déploiement rapide, hébergée sur un VPS. 
-Ce déploiement est automatique grâce à aux Github Actions.
+Ce déploiement est automatique grâce aux Github Actions.
