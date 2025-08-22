@@ -9,10 +9,9 @@ https://github.com/Nekeroo/SprintifyAppMobile
 
 ## Dernière version stable (LTS)
 
-Version actuelle : v1.9.0
+Version actuelle : v1.12.0
 
-https://github.com/Nekeroo/Sprintify/tree/v1.9.0
-
+https://github.com/Nekeroo/Sprintify/tree/v1.12.0
 ## Stack technique
 
 * Java 21
